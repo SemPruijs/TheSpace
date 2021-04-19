@@ -379,6 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabPosition: {fileID: 1468214915}
+  canGrabColor: {r: 0.71150684, g: 0.9622642, b: 0.6853863, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1468214914
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +506,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.6262703, y: 1.3010092}
+  m_Offset: {x: 2.1141472, y: 0.6506338}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -515,5 +517,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 26.502678, y: 31.056253}
+  m_Size: {x: 49.595673, y: 53.173286}
   m_EdgeRadius: 0
