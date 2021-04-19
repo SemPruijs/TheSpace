@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
+    }
 
+    private void FixedUpdate()
+    {
         _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
     }
 }
