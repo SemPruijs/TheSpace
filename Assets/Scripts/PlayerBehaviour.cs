@@ -32,5 +32,4 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
     }
-
 }

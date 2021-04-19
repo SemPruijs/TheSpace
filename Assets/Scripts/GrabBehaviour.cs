@@ -17,7 +17,7 @@ public class GrabBehaviour : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+
     private void Update()
     {
         _spriteRenderer.color = (_canGrab) ? canGrabColor : normalColor;
