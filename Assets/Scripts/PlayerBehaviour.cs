@@ -8,10 +8,15 @@ public class PlayerBehaviour : MonoBehaviour
     public float moveSpeed;
 
     private Rigidbody2D _rb2d;
-    
-    //gather input
+
+    //input variables
     private float _moveHorizontal;
     private float _moveVertical;
+
+
+    //Grabbing
+
+
     private void Start()
     {
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
@@ -27,4 +32,5 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
     }
+
 }
