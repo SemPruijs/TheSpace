@@ -8,6 +8,8 @@ public class PlayerBehaviour : MonoBehaviour
     public float moveSpeed;
 
     private Rigidbody2D _rb2d;
+    
+    //gather input
     private float _moveHorizontal;
     private float _moveVertical;
     private void Start()
