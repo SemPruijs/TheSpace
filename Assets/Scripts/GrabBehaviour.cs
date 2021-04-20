@@ -25,7 +25,7 @@ public class GrabBehaviour : MonoBehaviour
             SetGrabPosition();
         }
 
-        _isGrabbing = Input.GetKey(KeyCode.Space);
+        _isGrabbing = _canGrab && Input.GetKey(KeyCode.Space);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
