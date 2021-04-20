@@ -20,6 +20,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
         if (_detected)
         {
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed);
+            transform.rotation = (_player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
         }
     }
 
