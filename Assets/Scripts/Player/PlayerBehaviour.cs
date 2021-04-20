@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float moveSpeed;
+    public Color deadColor;
 
     private Rigidbody2D _rb2d;
 
@@ -27,6 +28,25 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
+        if (GameManager.Instance.state == GameManager.State.InGame)
+        {
+            _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.Instance.Dead();
+            PlayerDead();
+        }
+    }
+    
+    
+    public void PlayerDead()
+    {
+        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        gameObject.GetComponent<SpriteRenderer>().color = deadColor;
     }
 }

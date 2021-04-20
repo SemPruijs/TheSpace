@@ -17,10 +17,18 @@ public class StandardEnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_detected)
+        if (GameManager.Instance.state == GameManager.State.InGame)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed);
-            transform.rotation = (_player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
+            if (_detected)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed);
+                transform.rotation = (_player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
+            }
+        }
+        else
+        {
+            _detected = false;
+            _animator.SetBool("Detected", _detected);
         }
     }
 

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private PlayerBehaviour _playerBehaviour;
+    
     //Makes GameManager singleton
     private static GameManager _instance;
     public static GameManager Instance {
@@ -21,6 +24,12 @@ public class GameManager : MonoBehaviour
         } else {
             _instance = this;
         }
+    }
+
+    private void Start()
+    {
+        InGame();
+        _playerBehaviour = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
     }
 
     public enum State
