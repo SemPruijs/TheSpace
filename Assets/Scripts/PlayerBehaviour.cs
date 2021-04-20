@@ -14,9 +14,6 @@ public class PlayerBehaviour : MonoBehaviour
     private float _moveVertical;
 
 
-    //Grabbing
-
-
     private void Start()
     {
         _rb2d = gameObject.GetComponent<Rigidbody2D>();

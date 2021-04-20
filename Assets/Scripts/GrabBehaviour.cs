@@ -6,6 +6,7 @@ using UnityEngine;
 public class GrabBehaviour : MonoBehaviour
 {
     private bool _canGrab = false;
+    private bool _isGrabbing;
     public Transform grabPosition;
     private GameObject _lastPersonTouched;
     private SpriteRenderer _spriteRenderer;
@@ -25,6 +26,7 @@ public class GrabBehaviour : MonoBehaviour
         {
             _lastPersonTouched.transform.position = grabPosition.position;
         }
+        _isGrabbing = Input.GetKey(KeyCode.Space);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,13 +34,16 @@ public class GrabBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Person"))
         {
             _canGrab = true;
-            _lastPersonTouched = other.gameObject;
+            if (!_isGrabbing)
+            {
+                _lastPersonTouched = other.gameObject;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Person"))
+        if (other.gameObject.CompareTag("Person") && !_isGrabbing)
         {
             _canGrab = false;
         }
