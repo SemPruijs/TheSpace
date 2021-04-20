@@ -32,16 +32,18 @@ public class PlayerAnimationHandeler : MonoBehaviour
         if ((int) _moveHorizontal == -1)
         {
             return 3;
-        } else if ((int) _moveHorizontal == 1)
+        }
+
+        if ((int) _moveHorizontal == 1)
         {
             return 1;
-        } else if ((int) _moveVertical == 1)
+        }
+
+        if ((int) _moveVertical == 1)
         {
             return 0;
         }
-        else
-        {
-            return 2;
-        }
+
+        return 2;
     }
 }
