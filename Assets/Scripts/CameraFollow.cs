@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     public float trackingDelay;
     public float menuSize;
     public float inGameSize;
+    public float transitionSpeed;
 
     private void LateUpdate()
     {
