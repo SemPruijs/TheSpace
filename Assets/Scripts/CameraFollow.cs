@@ -8,6 +8,9 @@ public class CameraFollow : MonoBehaviour
     public GameObject target;
     public Vector3 offset;
     public float trackingDelay;
+    public float menuSize;
+    public float inGameSize;
+    public float transitionSpeed;
 
     private void LateUpdate()
     {
@@ -17,5 +20,15 @@ public class CameraFollow : MonoBehaviour
             var smoothedPosition = Vector3.Lerp(gameObject.transform.position, desiredPosition, trackingDelay * Time.deltaTime);
             transform.position = smoothedPosition;
         }
+    }
+
+    public void CameraTransition()
+    {
+        gameObject.GetComponent<Camera>().orthographicSize = inGameSize;
+    }
+
+    public void MenuCamera()
+    {
+        gameObject.GetComponent<Camera>().orthographicSize = menuSize;
     }
 }
