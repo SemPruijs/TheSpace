@@ -23,8 +23,10 @@ public class PlayerAnimationHandeler : MonoBehaviour
     {
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
-
-        _spriteRenderer.sprite = walkingSprites[ChooseWalkingSprite()];
+        if (GameManager.Instance.state == GameManager.State.InGame)
+        {
+            _spriteRenderer.sprite = walkingSprites[ChooseWalkingSprite()];
+        }
     }
 
     private int ChooseWalkingSprite()
