@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Menu && Input.GetKeyDown(KeyCode.Space))
         {
-            _cameraFollow.CameraTransition();
+            _cameraFollow.InGameCamera();
             InGame();
         }
     }

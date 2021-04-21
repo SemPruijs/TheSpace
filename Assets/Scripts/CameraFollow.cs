@@ -22,7 +22,7 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void CameraTransition()
+    public void InGameCamera()
     {
         gameObject.GetComponent<Camera>().orthographicSize = inGameSize;
     }
