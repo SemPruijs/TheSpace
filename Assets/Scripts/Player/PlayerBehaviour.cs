@@ -49,4 +49,23 @@ public class PlayerBehaviour : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         gameObject.GetComponent<SpriteRenderer>().color = deadColor;
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Floor0"))
+        {
+            GameManager.Instance.inRoom = true;
+            GameManager.Instance.cameraFollow.FloorZero();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Floor0"))
+        {
+            GameManager.Instance.inRoom = false;
+            GameManager.Instance.cameraFollow.InGameCamera();
+        }
+    }
 }

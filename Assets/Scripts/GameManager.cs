@@ -7,7 +7,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private PlayerBehaviour _playerBehaviour;
-    private CameraFollow _cameraFollow;
+    public CameraFollow cameraFollow;
+    public bool inRoom;
     
     //Makes GameManager singleton
     private static GameManager _instance;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _playerBehaviour = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
-        _cameraFollow = GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>();
+        cameraFollow = GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>();
         Menu();
     }
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         if (state == State.Menu && Input.GetKeyDown(KeyCode.Space))
         {
-            _cameraFollow.InGameCamera();
+            cameraFollow.InGameCamera();
             InGame();
         }
     }
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void Menu()
     {
         state = State.Menu;
-        _cameraFollow.MenuCamera();
+        cameraFollow.MenuCamera();
     }
 
     public void InGame()
