@@ -28,8 +28,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        InGame();
+        Menu();
         _playerBehaviour = GameObject.FindWithTag("Player").GetComponent<PlayerBehaviour>();
+    }
+
+    private void Update()
+    {
+        if (state == State.Menu && Input.GetKeyDown(KeyCode.Space))
+        {
+            InGame();
+        }
     }
 
     public enum State
@@ -45,15 +53,18 @@ public class GameManager : MonoBehaviour
     public void Menu()
     {
         state = State.Menu;
+        DisplayManager.Instance.UpdateUI();
     }
 
     public void InGame()
     {
         state = State.InGame;
+        DisplayManager.Instance.UpdateUI();
     }
 
     public void Dead()
     {
         state = State.Dead;
+        DisplayManager.Instance.UpdateUI();
     }
 }
