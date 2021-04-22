@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class StandardEnemyBehaviour : MonoBehaviour
 {
-    private Animator _animator;
-    private GameObject _player;
-    private bool _detected;
+    public Animator animator;
+    public GameObject player;
+    public bool detected;
     public float speed;
     public int lives = 5;
+    public ParticleSystem particleSystem;
     private void Start()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
         
     }
 
@@ -20,44 +21,30 @@ public class StandardEnemyBehaviour : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.InGame)
         {
-            if (_detected)
+            if (detected)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
-                transform.rotation = (_player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                transform.rotation = (player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
             }
         }
         else
         {
-            _detected = false;
-            _animator.SetBool("Detected", _detected);
+            detected = false;
+            animator.SetBool("Detected", detected);
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _detected = true;
-            _animator.SetBool("Detected", _detected);
-            _player = other.gameObject;
-        }
-
         if (other.gameObject.CompareTag("Sword"))
         {
             lives--;
+            particleSystem.Play(true);
             if (lives == 0)
             {
                 Destroy(gameObject);
             }
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _detected = false;
-            _animator.SetBool("Detected", _detected);
         }
     }
 }
