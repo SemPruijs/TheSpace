@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAnimationHandeler : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
+    private int _currentSprite = 0;
     public Sprite[] walkingSprites;
     public Animator animator;
 
@@ -42,19 +43,24 @@ public class PlayerAnimationHandeler : MonoBehaviour
     {
         if ((int) _moveHorizontal == -1)
         {
-            return 3;
+            _currentSprite = 3;
         }
 
         if ((int) _moveHorizontal == 1)
         {
-            return 1;
+            _currentSprite = 1;
         }
 
         if ((int) _moveVertical == 1)
         {
-            return 0;
+            _currentSprite = 0;
+        }
+        
+        if ((int) _moveVertical == -1)
+        {
+            _currentSprite = 2;
         }
 
-        return 2;
+        return _currentSprite;
     }
 }
