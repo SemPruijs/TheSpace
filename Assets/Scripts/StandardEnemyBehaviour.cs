@@ -9,6 +9,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
     private GameObject _player;
     private bool _detected;
     public float speed;
+    public int lives = 5;
     private void Start()
     {
         _animator = gameObject.GetComponent<Animator>();
@@ -39,6 +40,15 @@ public class StandardEnemyBehaviour : MonoBehaviour
             _detected = true;
             _animator.SetBool("Detected", _detected);
             _player = other.gameObject;
+        }
+
+        if (other.gameObject.CompareTag("Sword"))
+        {
+            lives--;
+            if (lives == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     

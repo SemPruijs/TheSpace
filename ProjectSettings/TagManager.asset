@@ -7,7 +7,7 @@ TagManager:
   - Person
   - Enemy
   - Floor0
-  - sword
+  - Sword
   layers:
   - Default
   - TransparentFX
