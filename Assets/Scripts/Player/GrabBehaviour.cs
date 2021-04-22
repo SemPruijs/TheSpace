@@ -22,7 +22,6 @@ public class GrabBehaviour : MonoBehaviour
         if (_canGrab && Input.GetKey(KeyCode.Space))
         {
             _lastPersonTouched.transform.position = grabPosition.position;
-            SetGrabPosition();
         }
 
         _isGrabbing = _canGrab && Input.GetKey(KeyCode.Space);
@@ -45,18 +44,6 @@ public class GrabBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Person") && !_isGrabbing)
         {
             _canGrab = false;
-        }
-    }
-
-    private void SetGrabPosition()
-    {
-        if ((int) Input.GetAxisRaw("Horizontal") == -1)
-        {
-            grabPosition.localPosition = new Vector3(_startGrabPosition.x * -1f, grabPosition.localPosition.y,
-                grabPosition.localPosition.z);
-        } else if ((int) Input.GetAxisRaw("Horizontal") == 1)
-        {
-            grabPosition.localPosition = _startGrabPosition;
         }
     }
 }
