@@ -7,6 +7,7 @@ public class PlayerAnimationHandeler : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
     public Sprite[] walkingSprites;
+    public Animator animator;
 
     //input variables
     private float _moveHorizontal;
@@ -26,6 +27,14 @@ public class PlayerAnimationHandeler : MonoBehaviour
         if (GameManager.Instance.state == GameManager.State.InGame)
         {
             _spriteRenderer.sprite = walkingSprites[ChooseWalkingSprite()];
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                animator.SetInteger("Direction", ChooseWalkingSprite());
+            }
+            else
+            {
+                animator.SetInteger("Direction", 4);
+            }
         }
     }
 
