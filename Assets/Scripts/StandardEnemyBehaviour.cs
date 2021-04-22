@@ -41,6 +41,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
         {
             lives--;
             particleSystem.Play(true);
+            StartCoroutine(GameManager.Instance.KnockBack(0.01f, 700f, gameObject.transform, player.transform));
             if (lives == 0)
             {
                 Destroy(gameObject);

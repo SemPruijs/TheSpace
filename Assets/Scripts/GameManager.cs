@@ -71,4 +71,19 @@ public class GameManager : MonoBehaviour
         state = State.Dead;
         DisplayManager.Instance.UpdateUI();
     }
+
+    public IEnumerator KnockBack(float duration, float power, Transform current ,Transform relativeToObject)
+    {
+        float timer = 0f;
+        while (duration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (relativeToObject.position - current.position).normalized;
+            {
+                current.GetComponent<Rigidbody2D>().AddForce(-direction * power);
+            }
+            
+            yield return null;
+        }
+    }
 }
