@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAnimationHandeler : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
-    private int _currentSprite = 0;
+    private int _currentSprite = 2;
     public Sprite[] walkingSprites;
     public Animator animator;
 
