@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public CameraFollow cameraFollow;
     public bool inRoom;
     public List<Boolean> peopleSave = new List<bool>() {false, false, false, false, false, false};
-    public bool[] peopleKilled;
+    public List<Boolean> peopleKilled = new List<bool>() {false, false, false, false, false, false};
     
     //Makes GameManager singleton
     private static GameManager _instance;
@@ -86,18 +86,26 @@ public class GameManager : MonoBehaviour
 
     public void WonDeath()
     {
-        state = State.WonPeace;
+        state = State.WonDeath;
         DisplayManager.Instance.UpdateUI();
     }
 
     public void CheckIfWon()
     {
-        var list = new List<bool>(peopleSave);
-        list.RemoveAll(person => person);
-        if (list.Count == 0)
+        var listSave = new List<bool>(peopleSave);
+        listSave.RemoveAll(person => person);
+        if (listSave.Count == 0)
         {
             WonPeace();
         }
+        
+        var listKilled = new List<bool>(peopleKilled);
+        listKilled.RemoveAll(person => person);
+        if (listKilled.Count == 0)
+        {
+            WonDeath();
+        }
+
     }
 
     public IEnumerator KnockBack(float duration, float power, Transform current ,Transform relativeToObject)

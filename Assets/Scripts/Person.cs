@@ -12,6 +12,7 @@ public class Person : MonoBehaviour
         if (other.gameObject.CompareTag("Sword"))
         {
             GameManager.Instance.peopleKilled[number] = true;
+            GameManager.Instance.CheckIfWon();
             Destroy(gameObject);
         }
         
