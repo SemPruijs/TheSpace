@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float moveSpeed;
+    public float moveSpeedWhileFighting;
     public GameObject mainCamera;
     public float respawnTime;
     public Color deadColor;
     public Color aliveColor;
+    public bool isFighting;
 
     private Rigidbody2D _rb2d;
 
@@ -27,13 +29,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
+        isFighting = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void FixedUpdate()
     {
         if (GameManager.Instance.state == GameManager.State.InGame)
         {
-            _rb2d.velocity = new Vector2(_moveHorizontal * moveSpeed, _moveVertical * moveSpeed);
+            _rb2d.velocity = new Vector2(_moveHorizontal * MoveSpeed(), _moveVertical * MoveSpeed());
         }
     }
 
@@ -83,6 +86,11 @@ public class PlayerBehaviour : MonoBehaviour
             GameManager.Instance.inRoom = false;
             GameManager.Instance.cameraFollow.InGameCamera();
         }
+    }
+
+    private float MoveSpeed()
+    {
+        return isFighting ? moveSpeedWhileFighting : moveSpeed;
     }
 
 
