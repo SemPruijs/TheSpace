@@ -18,6 +18,7 @@ public class Person : MonoBehaviour
         if (other.gameObject.name == saveTile.name)
         {
             GameManager.Instance.peopleSave[number] = true;
+            GameManager.Instance.CheckIfWon();
             Destroy(gameObject);
         }
     }

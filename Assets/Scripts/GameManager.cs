@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     private PlayerBehaviour _playerBehaviour;
     public CameraFollow cameraFollow;
     public bool inRoom;
-    public bool[] peopleSave;
+    public List<Boolean> peopleSave = new List<bool>() {false, false, false, false, false, false};
     public bool[] peopleKilled;
     
     //Makes GameManager singleton
@@ -51,7 +52,9 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         InGame,
-        Dead
+        Dead,
+        WonPeace,
+        WonDeath
     }
 
     public State state;
@@ -73,6 +76,28 @@ public class GameManager : MonoBehaviour
     {
         state = State.Dead;
         DisplayManager.Instance.UpdateUI();
+    }
+
+    public void WonPeace()
+    {
+        state = State.WonPeace;
+        DisplayManager.Instance.UpdateUI();
+    }
+
+    public void WonDeath()
+    {
+        state = State.WonPeace;
+        DisplayManager.Instance.UpdateUI();
+    }
+
+    public void CheckIfWon()
+    {
+        var list = new List<bool>(peopleSave);
+        list.RemoveAll(person => person);
+        if (list.Count == 0)
+        {
+            WonPeace();
+        }
     }
 
     public IEnumerator KnockBack(float duration, float power, Transform current ,Transform relativeToObject)

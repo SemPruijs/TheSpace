@@ -21,7 +21,10 @@ public class GrabBehaviour : MonoBehaviour
     {
         if (_canGrab && Input.GetKey(KeyCode.Space))
         {
-            _lastPersonTouched.transform.position = grabPosition.position;
+            if (_lastPersonTouched != null)
+            {
+                _lastPersonTouched.transform.position = grabPosition.position;
+            }
         }
 
         _isGrabbing = _canGrab && Input.GetKey(KeyCode.Space);
