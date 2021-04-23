@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public GameObject saveTile;
+    public int number;
+    public void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Sword"))
         {
+            GameManager.Instance.peopleKilled[number] = true;
+            Destroy(gameObject);
+        }
+        
+        if (other.gameObject.name == saveTile.name)
+        {
+            GameManager.Instance.peopleSave[number] = true;
             Destroy(gameObject);
         }
     }

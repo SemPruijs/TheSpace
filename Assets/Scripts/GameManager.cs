@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     private PlayerBehaviour _playerBehaviour;
     public CameraFollow cameraFollow;
     public bool inRoom;
+    public bool[] peopleSave;
+    public bool[] peopleKilled;
     
     //Makes GameManager singleton
     private static GameManager _instance;
