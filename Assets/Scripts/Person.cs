@@ -20,6 +20,7 @@ public class Person : MonoBehaviour
         {
             GameManager.Instance.peopleSave[number] = true;
             GameManager.Instance.CheckIfWon();
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
