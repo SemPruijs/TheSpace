@@ -7,6 +7,8 @@ public class DisplayManager : MonoBehaviour
     public GameObject menu;
     public GameObject inGame;
     public GameObject dead;
+    public GameObject wonPeach;
+    public GameObject wonDeath;
 
     //Makes DisplayManager singleton
     private static DisplayManager _instance;
@@ -33,5 +35,7 @@ public class DisplayManager : MonoBehaviour
         menu.SetActive(GameManager.Instance.state == GameManager.State.Menu);
         inGame.SetActive(GameManager.Instance.state == GameManager.State.InGame);
         dead.SetActive(GameManager.Instance.state == GameManager.State.Dead);
+        wonPeach.SetActive(GameManager.Instance.state == GameManager.State.WonPeace);
+        wonDeath.SetActive(GameManager.Instance.state == GameManager.State.WonDeath);
     }
 }

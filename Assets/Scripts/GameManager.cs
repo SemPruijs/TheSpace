@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         state = State.Menu;
         cameraFollow.MenuCamera();
+        DisplayManager.Instance.UpdateUI();
     }
 
     public void InGame()
