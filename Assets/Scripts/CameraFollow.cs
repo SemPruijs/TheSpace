@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     public float trackingDelay;
     public float menuSize;
     public float inGameSize;
+    public float deadSize;
     [Space(10)]
     public float floor0Size;
     public Vector3 floor0Position;
@@ -38,5 +39,10 @@ public class CameraFollow : MonoBehaviour
     {
         gameObject.GetComponent<Camera>().orthographicSize = floor0Size;
         transform.position = floor0Position;
+    }
+
+    public void DeadCamera()
+    {
+        gameObject.GetComponent<Camera>().orthographicSize = deadSize;
     }
 }

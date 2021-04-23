@@ -6,7 +6,10 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float moveSpeed;
+    public GameObject mainCamera;
+    public float respawnTime;
     public Color deadColor;
+    public Color aliveColor;
 
     private Rigidbody2D _rb2d;
 
@@ -39,15 +42,28 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameManager.Instance.Dead();
-            PlayerDead();
+            StartCoroutine(Respawn());
+            PlayerLook("dead");
         }
     }
     
     
-    public void PlayerDead()
+    public void PlayerLook(string state)
     {
-        gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-        gameObject.GetComponent<SpriteRenderer>().color = deadColor;
+        if (state == "dead")
+        {
+            gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            gameObject.GetComponent<SpriteRenderer>().color = deadColor;
+        }
+        else if (state == "alive")
+        {
+            gameObject.transform.rotation = Quaternion.identity;
+            gameObject.GetComponent<SpriteRenderer>().color = aliveColor;
+        }
+        else
+        {
+            Debug.Log("Did not recognize state in playerLook function");
+        }
     }
 
 
@@ -67,5 +83,25 @@ public class PlayerBehaviour : MonoBehaviour
             GameManager.Instance.inRoom = false;
             GameManager.Instance.cameraFollow.InGameCamera();
         }
+    }
+
+
+    private IEnumerator Respawn()
+    {
+        GameManager.Instance.cameraFollow.DeadCamera();
+        float time = 0;
+
+        while (time < respawnTime)
+        {
+            mainCamera.transform.position = gameObject.transform.position + GameManager.Instance.cameraFollow.offset;
+            time += Time.deltaTime;
+            
+            yield return null;
+        }
+
+        gameObject.transform.position = GameManager.Instance.spawnPoint.position;
+        PlayerLook("alive");
+        GameManager.Instance.InGame();
+        GameManager.Instance.cameraFollow.InGameCamera();
     }
 }

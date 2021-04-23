@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool inRoom;
     public List<Boolean> peopleSave = new List<bool>() {false, false, false, false, false, false};
     public List<Boolean> peopleKilled = new List<bool>() {false, false, false, false, false, false};
+    public Transform spawnPoint;
     
     //Makes GameManager singleton
     private static GameManager _instance;
