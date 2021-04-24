@@ -15,7 +15,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        
+        player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
         {
             if (detected && !touchingWall)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                
                 transform.rotation = (player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
             }
         }
@@ -35,6 +35,15 @@ public class StandardEnemyBehaviour : MonoBehaviour
         }
     }
 
+
+    private void FixedUpdate()
+    {
+        if (detected && !touchingWall)
+        {
+            transform.position =
+                Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
