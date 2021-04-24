@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
         InGame,
         Dead,
         WonPeace,
-        WonDeath
+        WonDeath,
+        Credits
     }
 
     public State state;
@@ -90,6 +91,12 @@ public class GameManager : MonoBehaviour
     public void WonDeath()
     {
         state = State.WonDeath;
+        DisplayManager.Instance.UpdateUI();
+    }
+
+    public void Credits()
+    {
+        state = State.Credits;
         DisplayManager.Instance.UpdateUI();
     }
 
