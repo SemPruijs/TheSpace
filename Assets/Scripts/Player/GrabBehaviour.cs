@@ -19,7 +19,7 @@ public class GrabBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (_canGrab && Input.GetKey(KeyCode.Space))
+        if (_canGrab && Input.GetKey(KeyCode.Space) && GameManager.Instance.state == GameManager.State.InGame)
         {
             if (_lastPersonTouched != null)
             {
