@@ -13,7 +13,6 @@ public class Person : MonoBehaviour
         {
             GameManager.Instance.peopleKilled[number] = true;
             GameManager.Instance.CheckIfWon();
-            Destroy(gameObject);
         }
         
         if (other.gameObject.name == saveTile.name)
