@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         state = State.WonPeace;
         DisplayManager.Instance.UpdateUI();
+        cameraFollow.GetComponent<Animator>().enabled = true;
     }
 
     public void WonDeath()
