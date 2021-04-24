@@ -9,6 +9,7 @@ TagManager:
   - Floor0
   - Sword
   - Lava
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
     public bool detected;
     public float speed;
     public int lives = 5;
+    public bool touchingWall;
     public ParticleSystem particleSystem;
     private void Start()
     {
@@ -21,7 +22,7 @@ public class StandardEnemyBehaviour : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.InGame)
         {
-            if (detected)
+            if (detected && !touchingWall)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
                 transform.rotation = (player.transform.position.x > transform.position.x) ? Quaternion.Euler(0f, 180f, 0f) : Quaternion.identity;
@@ -47,5 +48,15 @@ public class StandardEnemyBehaviour : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        touchingWall = other.gameObject.CompareTag("Wall");
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        touchingWall = !other.gameObject.CompareTag("Wall");
     }
 }
