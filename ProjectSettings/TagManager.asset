@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Floor0
   - Sword
+  - Lava
   layers:
   - Default
   - TransparentFX

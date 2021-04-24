@@ -77,6 +77,13 @@ public class PlayerBehaviour : MonoBehaviour
             GameManager.Instance.inRoom = true;
             GameManager.Instance.cameraFollow.FloorZero();
         }
+
+        if (other.gameObject.CompareTag("Lava"))
+        {
+            GameManager.Instance.Dead();
+            StartCoroutine(Respawn());
+            PlayerLook("dead");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
